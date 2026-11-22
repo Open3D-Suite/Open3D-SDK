@@ -1,7 +1,7 @@
 # OpenExample
 
 <What OpenExample does for a 3D artist, in two or three sentences.> A single Windows program, nothing
-else to install, no account. Part of the [Open3D](https://github.com/carlesllavata/Open3D) suite of
+else to install, no account. Part of the [Open3D](https://github.com/Open3D-Suite/Open3D) suite of
 open-source tools for 3D work.
 
 **Version 0.1.0** – what changed in each version is in [`CHANGELOG.md`](CHANGELOG.md).
@@ -10,7 +10,7 @@ open-source tools for 3D work.
 
 Windows 10 or 11, 64-bit. Nothing else is needed. Two ways:
 
-- **With the [Open3D launcher](https://github.com/carlesllavata/Open3D)**: press *Install* on
+- **With the [Open3D launcher](https://github.com/Open3D-Suite/Open3D)**: press *Install* on
   OpenExample's card. It is installed for everyone on the computer in
   `C:\Program Files\Open3D\OpenExample`, with a shortcut in the Start menu, and Windows asks for
   permission at each install and update. The launcher updates it and removes it.

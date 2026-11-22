@@ -7,7 +7,7 @@ updates the apps, programs of their own (OpenView, OpenRef, OpenFarm, OpenGaussi
 (OpenTools, OpenManager, OpenScatter). Each app lives in a public repository of its own and works on its
 own. They share one way of being built, checked, packaged, installed and set up, so that the suite feels
 like one thing to the people who use it. The launcher and the list of apps are in
-[Open3D](https://github.com/carlesllavata/Open3D).
+[Open3D](https://github.com/Open3D-Suite/Open3D).
 
 This repository is a GitHub template. *Use this template* makes a new app's repository from it, with:
 

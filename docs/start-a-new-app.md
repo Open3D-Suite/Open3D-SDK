@@ -20,9 +20,11 @@ Agree also the kind of app, a program or a 3ds Max plug-in, and its technology
 
 ## 2. Make the repository
 
-1. On this repository's page on GitHub, press *Use this template* and *Create a new repository*. Name it
-   as the app, make it public, and include only the default branch, `main`.
-2. Clone it.
+1. The Open3D apps live in the GitHub organization [Open3D-Suite](https://github.com/Open3D-Suite), where only
+   its owners create repositories. Once the name is agreed, an owner makes the app's repository there from
+   this template (*Use this template*, public, only `main`), with the same rules as the others: `main`
+   takes a reviewed pull request with green CI, and only owners make version tags.
+2. Clone it. As a member of the organization you can push branches to it and open pull requests.
 
 What you need on the computer:
 

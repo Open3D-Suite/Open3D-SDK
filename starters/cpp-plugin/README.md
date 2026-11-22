@@ -1,7 +1,7 @@
 # OpenExample
 
 <What OpenExample does for a 3D artist in 3ds Max, in two or three sentences.> A plug-in for 3ds Max,
-written in C++ with the 3ds Max SDK. Part of the [Open3D](https://github.com/carlesllavata/Open3D)
+written in C++ with the 3ds Max SDK. Part of the [Open3D](https://github.com/Open3D-Suite/Open3D)
 suite of open-source tools for 3D work.
 
 **Version 0.1.0** – what changed in each version is in [`CHANGELOG.md`](CHANGELOG.md).
@@ -10,7 +10,7 @@ suite of open-source tools for 3D work.
 
 OpenExample needs **3ds Max 2027** on Windows, the version it is built for.
 
-The easy way: install the [Open3D Launcher](https://github.com/carlesllavata/Open3D/releases/latest)
+The easy way: install the [Open3D Launcher](https://github.com/Open3D-Suite/Open3D/releases/latest)
 and click **Install** next to OpenExample, with 3ds Max closed. It puts OpenExample in
 `%APPDATA%\Autodesk\ApplicationPlugins` as a plug-in bundle, tells you when a new version is out and
 updates it. To uninstall, choose **Uninstall…** in OpenExample's menu in the launcher.
