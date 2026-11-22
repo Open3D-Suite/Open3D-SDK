@@ -2,7 +2,7 @@
 
 <What OpenExample does for a 3D artist in 3ds Max, in two or three sentences.> A plug-in that lives
 inside **3ds Max**, written in Python (the Python and Qt that come with 3ds Max) and MAXScript: no
-separate program and no account. Part of the [Open3D](https://github.com/Open3D-Suite/Open3D) suite
+separate program and no account. Part of the [Open3D](https://github.com/Open3D-Suite/Open3D-Launcher) suite
 of open-source tools for 3D work.
 
 > Status: early (v0.1.0).
@@ -12,7 +12,7 @@ of open-source tools for 3D work.
 
 ## Install
 
-The easy way: install the [Open3D Launcher](https://github.com/Open3D-Suite/Open3D/releases/latest)
+The easy way: install the [Open3D Launcher](https://github.com/Open3D-Suite/Open3D-Launcher/releases/latest)
 and click **Install** next to OpenExample, with 3ds Max closed. It puts OpenExample in
 `%APPDATA%\Autodesk\ApplicationPlugins` as a plug-in bundle, tells you when a new version is out and
 updates it. To uninstall, choose **Uninstall…** in OpenExample's menu in the launcher.
