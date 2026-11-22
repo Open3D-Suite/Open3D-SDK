@@ -59,7 +59,7 @@ The `[package]` table of a program names `name`, `build`, `third_party = "cargo"
   permission prompt. By hand, it is copied there with 3ds Max closed.
 
 The `[package]` table of a plug-in names `name`, `bundle` (`"<App>.bundle"`), `build` when something is
-built (a C++ `.dlo`, a generated `PackageContents.xml`) and `files`.
+built (a C++ plug-in, a generated `PackageContents.xml`) and `files`.
 
 ## The release
 

@@ -73,13 +73,14 @@ While working, load the plug-in from the repository or from `dist/`:
   `%APPDATA%\Autodesk\ApplicationPlugins` whose start-up script puts the bundle's `Contents\python` in the
   repository on `sys.path` and starts the package from there. Every 3ds Max and every `3dsmaxbatch` you start
   then runs the repository's code, so set the scratch variables for those too. Never install the
-  development bundle and the release bundle together: only the first to start runs. TODO(check): whether
-  the Python starter carries such a script, as OpenTools' `dev/install_dev.ps1` does.
+  development bundle and the release bundle together: only the first to start runs. The Python starter
+  carries no script for it; OpenTools' `dev/install_dev.ps1` is one to follow.
 - **A built bundle in `dist/`:** in a 3ds Max you started, run the bundle's start-up script with `fileIn`.
 - **A C++ plug-in:** `build.ps1 -Plugin` puts the bundle together in the build folder, without installing
-  it. In a 3ds Max you started, `loadDllsFromDir` on a copy of its `.dlo` in a scratch folder: 3ds Max holds
-  the file until it closes, so a copy keeps the build folder free. Automatic tests run in `3dsmaxbatch`,
-  each with a private copy of the bundle.
+  it. In a 3ds Max you started, `loadDllsFromDir` on a copy of its plug-in file (the starter's
+  `OpenExample.gup`, a `.dlo` for an object) in a scratch folder: 3ds Max holds the file until it closes, so
+  a copy keeps the build folder free. Automatic tests run in `3dsmaxbatch`, each with a private copy of the
+  bundle.
 
 Once before a release, try the installed package as well: with any development bundle removed, unzip the
 release zip's bundle into `ApplicationPlugins`, start 3ds Max and check that the plug-in loads and runs. A
