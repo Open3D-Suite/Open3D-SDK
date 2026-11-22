@@ -55,10 +55,10 @@ robocopy starters\rust-program . /E
 git rm -r -q starters docs
 ```
 
-(robocopy's exit code is 1 when it copied files: that is success.) The starter's own `README.md`,
-`CHANGELOG.md`, `CLAUDE.md`, `.gitignore`, `tools/repo.toml` and CI take the place of the SDK's, so the SDK's
-README goes with them; if it is still there, remove it too. The common files at the root stay as they are.
-TODO(check): the list of files each starter replaces at the root, against `starters/README.md`.
+(robocopy's exit code is 1 when it copied files: that is success.) Every starter has its own `README.md`,
+`CHANGELOG.md`, `CLAUDE.md`, `.gitignore`, `.github/workflows/check.yml` and `tools/repo.toml`, which take the
+place of the SDK's: the SDK's README goes that way. The common files at the root (`.editorconfig`,
+`.gitattributes`, `LICENSE`, `ruff.toml` and the common tool in `tools/`) stay as they are.
 
 The guides stay here, in Open3D-SDK; the app's repository does not carry them.
 

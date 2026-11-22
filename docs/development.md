@@ -75,11 +75,10 @@ push and every pull request to `main`. A pull request is merged only when it pas
 
 - A Python plug-in runs it twice, on Python 3.11 and 3.13: the Pythons of 3ds Max 2025 and 2027.
 - A Rust program adds rustfmt and clippy to the runner's Rust, and runs on Python 3.14.
-- A C++ plug-in builds and tests the part that does not need the 3ds Max SDK; what needs 3ds Max runs only
-  with `-Full`.
+- A C++ plug-in builds and tests the library that needs no 3ds Max, on Python 3.14; the plug-in itself,
+  which needs the 3ds Max SDK, is built only with `-Full`.
 
 The workflow reads only (`permissions: contents: read`), and its actions are pinned to a commit.
-TODO(check): the CI of the C++ starter, against the line above.
 
 ## Formats and lints
 
