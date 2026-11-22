@@ -22,7 +22,7 @@ This repository is a GitHub template. *Use this template* makes a new app's repo
 
 A repository made from it passes `tools\check.ps1` from its first commit.
 
-> Status: early (v0.1.0). What each version changes: [CHANGELOG.md](CHANGELOG.md).
+> Status: early. A new app starts from `main`; what changes here: [CHANGELOG.md](CHANGELOG.md).
 
 ## Start a new app
 

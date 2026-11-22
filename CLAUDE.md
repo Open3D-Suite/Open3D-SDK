@@ -64,7 +64,9 @@ as a change that makes it old.
   does. `starters/README.md` lists every place a new app makes its own; it changes with them.
 - A starter's `CLAUDE.md` is a model: the five sections of an Open3D app's `CLAUDE.md`, with the texts the
   author writes in angle brackets, and how we work.
-- No file names a computer, nor the numbers of the maintainers' decisions: their record is not public.
+- No file names a computer. The guides, the starters and this repository's own files name no numbers of
+  the maintainers' decisions, whose record is not public; the common copies keep the ones their
+  originals have.
 
 ## Traps
 
