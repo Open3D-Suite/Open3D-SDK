@@ -14,12 +14,10 @@ APP = "OpenExample"
 
 
 def start():
-    """What runs when 3ds Max starts: one line in the MAXScript Listener, in the language every Open3D app
-    shares, that says where OpenExample keeps its files. Returns that line. Nothing is created."""
+    """What runs when 3ds Max starts: one line in the MAXScript Listener that says where OpenExample keeps
+    its files. Returns that line. Nothing is created."""
     from . import folders
 
-    line = f"{APP} {__version__}: " + folders.describe(
-        folders.language(), folders.settings_dir(), folders.data_dir(), separator="; "
-    )
+    line = f"{APP} {__version__}: " + folders.describe(folders.settings_dir(), folders.data_dir(), separator="; ")
     print(line)  # Inside 3ds Max, print writes to the MAXScript Listener.
     return line

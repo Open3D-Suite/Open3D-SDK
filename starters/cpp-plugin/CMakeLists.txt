@@ -32,8 +32,8 @@ function(openexample_target_options target)
     endif()
 endfunction()
 
-# The part that needs no 3ds Max: what the plug-in says about itself, and the language and the folders
-# every Open3D app shares (src/open3d_settings.cpp, a copy of a common file).
+# The part that needs no 3ds Max: where the plug-in keeps its files, from what every Open3D app shares
+# (src/open3d_settings.cpp, a copy of a common file).
 add_library(openexample_core STATIC
     src/folders.h
     src/folders.cpp

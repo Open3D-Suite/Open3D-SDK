@@ -45,8 +45,8 @@ Update it in the same commit as a change that makes it old.
   `Contents/scripts/openexample_startup.ms` runs once 3ds Max has started, puts `Contents/python` on
   `sys.path` and calls `openexample.start()`.
 - `Contents/python/openexample/`: the plug-in. `__init__.py`: its name, its version and `start()`.
-  `folders.py`: where it keeps its files and which language it speaks. `open3d_settings.py`: what every
-  Open3D app shares (the language and the folders), a copy of a common file.
+  `folders.py`: where it keeps its files. `open3d_settings.py`: what every Open3D app shares (the
+  language and the folders), a copy of a common file; the plug-in takes only its folders from it.
 - `tests/`: the tests that need no 3ds Max; `tests/run.py` runs them.
 
 ## Build and check
@@ -93,17 +93,17 @@ Update it in the same commit as a change that makes it old.
   it.
 - Only the modules that make windows import Qt and pymxs at module level; the others import them inside
   functions, so that the tests can load them. What is tested lives in modules without those imports.
-- The language is the one every Open3D app shares, in `settings.json` (`%APPDATA%\Open3D`, or the folder
-  `OPEN3D_SETTINGS_DIR` names): `folders.language()` reads it, and with no preference the language of
-  Windows decides. Every text of the interface exists in English and in Spanish. Only a person's choice
-  writes the file (`open3d_settings.write_language`).
+- The interface is in English only: its texts are written straight in the code. Open3D's 3ds Max
+  plug-ins do not follow the language the programs and the launcher share in `settings.json`.
 - Its files (`folders.py`): settings in `%APPDATA%\Open3D\OpenExample`, everything else it writes in
   `%LOCALAPPDATA%\Open3D\OpenExample`; `OPEN3D_SETTINGS_DIR` and `OPEN3D_DATA_DIR` move them. Only the
-  plug-in creates them, when it first writes there.
+  plug-in creates them, when it first writes there. `open3d_settings` gives it these folders and, for a
+  plug-in that kept its files elsewhere before, `carry_over`, which copies the old folder into the new
+  one once, at start; never a language.
 - `PackageContents.xml`: `ProductCode` and `UpgradeCode` are made once for OpenExample and never change;
   `tests/test_bundle.py` fails while they are not GUIDs.
 - MAXScript files: 4 spaces, LF, UTF-8 with a byte order mark. Their globals and structs start with
-  `OpenExample_`.
+  `<PREFIX>_`, a short prefix of OpenExample's own.
 - <The rules of this app's own code.>
 
 ## Traps

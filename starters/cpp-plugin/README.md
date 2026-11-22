@@ -24,9 +24,9 @@ it, delete that folder with 3ds Max closed.
 
 <How to use it, step by step.>
 
-In the MAXScript Listener, `OpenExample.describe()` says where OpenExample keeps its files, in the
-language of the Open3D launcher and the other Open3D apps, English or Spanish. Until one is chosen
-there, it follows Windows: Spanish if Windows is in Spanish, English otherwise.
+In the MAXScript Listener, `OpenExample.describe()` says where OpenExample keeps its files.
+
+The interface is in English only.
 
 ## Building
 

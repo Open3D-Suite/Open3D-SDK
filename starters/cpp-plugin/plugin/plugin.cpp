@@ -3,7 +3,7 @@
 // OpenExample's plug-in for 3ds Max: the entry points 3ds Max looks for in a plug-in, a global utility
 // plug-in that 3ds Max starts with itself, and the MAXScript interface it owns:
 //
-//     OpenExample.describe()   -- the language and the folders of OpenExample, in that language
+//     OpenExample.describe()   -- the folders where OpenExample keeps its files
 //
 // What can be tested without 3ds Max is in src/, in the openexample_core library.
 
@@ -101,7 +101,7 @@ class OpenExampleInterface : public FPStaticInterface
         kDescribe,
     };
 
-    // The language and the folders of OpenExample, in the language every Open3D app shares.
+    // The folders where OpenExample keeps its files.
     MSTR describe()
     {
         return MSTR(openexample::describe_here().c_str());

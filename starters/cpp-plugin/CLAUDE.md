@@ -44,9 +44,9 @@ Update it in the same commit as a change that makes it old.
 ## Layout
 
 - `src/`: the library `openexample_core`, plain C++20 with no 3ds Max header. `folders.h` and
-  `folders.cpp`: what the plug-in says about itself, its folders in the shared language.
-  `open3d_settings.h` and `open3d_settings.cpp`: what every Open3D app shares (the language and the
-  folders), a copy of a common file.
+  `folders.cpp`: where the plug-in keeps its files. `open3d_settings.h` and `open3d_settings.cpp`: what
+  every Open3D app shares (the language and the folders), a copy of a common file; the plug-in takes only
+  its folders from it.
 - `plugin/`: the plug-in, `OpenExample.gup`, with the 3ds Max SDK. `plugin.cpp`: the entry points, the
   global utility plug-in 3ds Max starts with itself, and the MAXScript interface `OpenExample`
   (`OpenExample.describe()`). `version.rc.in`: its file properties.
@@ -104,14 +104,14 @@ Update it in the same commit as a change that makes it old.
 - A bug that is fixed comes with a test that fails without the fix, and new logic comes with its tests.
   The plug-in is tried by hand in 3ds Max before a release.
 - What can be tested lives in `src/`, with no 3ds Max header; `plugin/` only connects it to 3ds Max.
-- The language is the one every Open3D app shares, in `settings.json` (`%APPDATA%\Open3D`, or the folder
-  `OPEN3D_SETTINGS_DIR` names): `open3d_settings::language` reads it, and with no preference the language
-  of Windows decides. Every text of the interface exists in English and in Spanish. Only a person's
-  choice writes the file (`open3d_settings::write_language`).
+- The interface is in English only: its texts are written straight in the code. Open3D's 3ds Max
+  plug-ins do not follow the language the programs and the launcher share in `settings.json`.
 - Its files: settings in `open3d_settings::app_settings_dir(kApp)` (`%APPDATA%\Open3D\OpenExample`),
   everything else it writes in `app_data_dir(kApp)` (`%LOCALAPPDATA%\Open3D\OpenExample`);
   `OPEN3D_SETTINGS_DIR` and `OPEN3D_DATA_DIR` move them. Only the plug-in creates them, when it first
-  writes there.
+  writes there. `open3d_settings` gives it these folders and, for a plug-in that kept its files
+  elsewhere before, `carry_over`, which copies the old folder into the new one once, at start; never a
+  language.
 - The plug-in's `Class_ID` and `Interface_ID` (top of `plugin/plugin.cpp`) and the bundle's `ProductCode`
   and `UpgradeCode` are made once for OpenExample and never change: scenes and 3ds Max know the plug-in
   by them.

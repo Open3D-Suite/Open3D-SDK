@@ -36,28 +36,23 @@ void setVariable(const wchar_t* name, const std::filesystem::path& value)
 #endif
 }
 
-void theTextNamesBothFoldersInTheLanguageShown()
+void theTextNamesBothFolders()
 {
-    using open3d_settings::Language;
     const std::filesystem::path settings = L"S:\\Open3D\\OpenExample";
     const std::filesystem::path data = L"D:\\Open3D\\OpenExample";
-    CHECK(openexample::describe(Language::English, settings, data) ==
-          L"Language: English\nSettings: S:\\Open3D\\OpenExample\nOther files: D:\\Open3D\\OpenExample");
-    CHECK(openexample::describe(Language::Spanish, settings, data) ==
-          L"Idioma: español\nAjustes: S:\\Open3D\\OpenExample\nOtros archivos: D:\\Open3D\\OpenExample");
+    CHECK(openexample::describe(settings, data) ==
+          L"Settings: S:\\Open3D\\OpenExample\nOther files: D:\\Open3D\\OpenExample");
 }
 
 void aMissingFolderIsSaid()
 {
-    using open3d_settings::Language;
-    CHECK(openexample::describe(Language::English, std::nullopt, std::nullopt) ==
-          L"Language: English\nSettings: (no folder)\nOther files: (no folder)");
-    CHECK(openexample::describe(Language::Spanish, std::nullopt, std::nullopt).ends_with(L"(ninguna carpeta)"));
+    CHECK(openexample::describe(std::nullopt, std::nullopt) == L"Settings: (no folder)\nOther files: (no folder)");
 }
 
-// With the variables every Open3D app reads pointing at a temporary folder: the shared language and the
-// app's two folders, and nothing created.
-void theSharedLanguageAndTheAppsFoldersAreUsed()
+// With the variables every Open3D app reads pointing at a temporary folder: the app's two folders, in
+// English even when the shared language is Spanish (a 3ds Max plug-in is in English only), and nothing
+// created.
+void theAppsFoldersAreUsedInEnglish()
 {
     std::error_code error;
     const std::filesystem::path root = std::filesystem::temp_directory_path() / L"openexample-tests";
@@ -67,8 +62,8 @@ void theSharedLanguageAndTheAppsFoldersAreUsed()
     setVariable(L"OPEN3D_SETTINGS_DIR", root / L"settings");
     setVariable(L"OPEN3D_DATA_DIR", root / L"data");
 
-    const std::wstring expected = L"Idioma: español\nAjustes: " + (root / L"settings" / L"OpenExample").wstring() +
-                                  L"\nOtros archivos: " + (root / L"data" / L"OpenExample").wstring();
+    const std::wstring expected = L"Settings: " + (root / L"settings" / L"OpenExample").wstring() + L"\nOther files: " +
+                                  (root / L"data" / L"OpenExample").wstring();
     CHECK(openexample::describe_here() == expected);
     CHECK(!std::filesystem::exists(root / L"settings" / L"OpenExample"));
     CHECK(!std::filesystem::exists(root / L"data"));
@@ -79,9 +74,9 @@ void theSharedLanguageAndTheAppsFoldersAreUsed()
 
 int main()
 {
-    theTextNamesBothFoldersInTheLanguageShown();
+    theTextNamesBothFolders();
     aMissingFolderIsSaid();
-    theSharedLanguageAndTheAppsFoldersAreUsed();
+    theAppsFoldersAreUsedInEnglish();
     if (g_failed != 0)
     {
         std::printf("%d checks FAILED\n", g_failed);

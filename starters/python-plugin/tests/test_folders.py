@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Where OpenExample keeps its files, in which language it speaks, and what start() says. Every folder is
-a temporary one, named by the variables every Open3D app reads."""
+"""Where OpenExample keeps its files, and what start() says. Every folder is a temporary one, named by the
+variables every Open3D app reads."""
 
 import contextlib
 import io
@@ -27,11 +27,6 @@ class Folders(unittest.TestCase):
         patcher.start()
         self.addCleanup(patcher.stop)
 
-    def choose(self, language):
-        """The shared preference, as the launcher or another app keeps it."""
-        self.settings.mkdir(exist_ok=True)
-        (self.settings / "settings.json").write_text(json.dumps({"language": language}), encoding="utf-8")
-
     def test_the_folders_are_named_after_the_app(self):
         self.assertEqual(folders.settings_dir(), self.settings / "OpenExample")
         self.assertEqual(folders.data_dir(), self.data / "OpenExample")
@@ -41,35 +36,33 @@ class Folders(unittest.TestCase):
             self.assertIsNone(folders.settings_dir())
             self.assertIsNone(folders.data_dir())
 
-    def test_the_shared_language_is_the_one_shown(self):
-        self.choose("es")
-        self.assertEqual(folders.language(), "es")
-        self.choose("en")
-        self.assertEqual(folders.language(), "en")
-
-    def test_start_says_where_the_files_go_in_the_shared_language(self):
-        self.choose("es")
+    def test_start_says_where_the_files_go(self):
         with contextlib.redirect_stdout(io.StringIO()) as printed:
             line = openexample.start()
         self.assertEqual(printed.getvalue(), line + "\n")
         expected = (
-            f"OpenExample {openexample.__version__}: Idioma: español; "
-            f"Ajustes: {self.settings / 'OpenExample'}; Otros archivos: {self.data / 'OpenExample'}"
+            f"OpenExample {openexample.__version__}: "
+            f"Settings: {self.settings / 'OpenExample'}; Other files: {self.data / 'OpenExample'}"
         )
         self.assertEqual(line, expected)
 
+    def test_the_plugin_speaks_english_whatever_the_shared_language(self):
+        # The shared language is for the programs and the launcher; a 3ds Max plug-in is in English only.
+        with contextlib.redirect_stdout(io.StringIO()):
+            without = openexample.start()
+        self.settings.mkdir()
+        (self.settings / "settings.json").write_text(json.dumps({"language": "es"}), encoding="utf-8")
+        with contextlib.redirect_stdout(io.StringIO()):
+            with_spanish = openexample.start()
+        self.assertEqual(with_spanish, without)
+
     def test_start_creates_nothing(self):
-        self.choose("en")
         with contextlib.redirect_stdout(io.StringIO()):
             openexample.start()
-        self.assertEqual(sorted(path.name for path in self.root.iterdir()), ["settings"])
-        self.assertEqual([path.name for path in self.settings.iterdir()], ["settings.json"])
+        self.assertEqual(list(self.root.iterdir()), [])
 
     def test_a_missing_folder_is_said(self):
-        self.assertEqual(
-            folders.describe("en", None, None), "Language: English\nSettings: (no folder)\nOther files: (no folder)"
-        )
-        self.assertTrue(folders.describe("es", None, None).endswith("Otros archivos: (ninguna carpeta)"))
+        self.assertEqual(folders.describe(None, None), "Settings: (no folder)\nOther files: (no folder)")
 
 
 if __name__ == "__main__":

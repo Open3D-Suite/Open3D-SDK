@@ -29,8 +29,7 @@ OpenExample keeps its settings in `%APPDATA%\Open3D\OpenExample` and everything 
 
 <How to use it, step by step.>
 
-OpenExample speaks the language of the Open3D launcher and the other Open3D apps, English or Spanish.
-Until one is chosen there, it follows Windows: Spanish if Windows is in Spanish, English otherwise.
+The interface is in English only.
 
 ## Development
 
