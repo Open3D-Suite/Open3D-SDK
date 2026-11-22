@@ -150,7 +150,8 @@ When the app does what its first version should:
 2. Tell the Open3D maintainer. Open3D's maintainers review the code, its security
    ([Security](security.md#the-review-before-the-launcher)) and do the real test as a user
    ([Testing](testing.md)). What they find is fixed first.
-3. Make the first release with `python -I tools/repo.py release 0.1.0`. It stays a draft until the Open3D
+3. Make the first release, 0.1.0: a pull request that prepares it, then `python -I tools/repo.py release
+   0.1.0` on `main` ([Distribution](distribution.md#the-release)). It stays a draft until the Open3D
    maintainer publishes it.
 4. Give the maintainers the texts and the icon for the launcher. They add the app to the signed catalog,
    and every launcher shows it at its next start.

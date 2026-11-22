@@ -63,29 +63,40 @@ built (a C++ plug-in, a generated `PackageContents.xml`) and `files`.
 
 ## The release
 
+A release reaches `main` through a pull request too, like every change. It takes two steps.
+
+**1. Prepare it, in a pull request.** On a branch:
+
+```
+git switch -c release-X.Y.Z
+python -I tools/repo.py version set X.Y.Z
+```
+
+Then, in `CHANGELOG.md`, turn `## In development` into `## X.Y.Z — <date>`, dated the way the last heading
+is. Commit `Release X.Y.Z`, open the pull request, and merge it once CI passes and it is reviewed.
+
+**2. Tag it and make the draft, on `main`.** Switch to `main`, pull, and run:
+
 ```
 python -I tools/repo.py release X.Y.Z --dry-run
 python -I tools/repo.py release X.Y.Z
 ```
 
-`--dry-run` tries everything and writes only to `dist/`. Without it, from a clean `main`:
+`--dry-run` tries everything and writes only to `dist/`. Without it, on a clean `main` that already has the
+version and its CHANGELOG section, the release step:
 
-1. It writes the version, turns `## In development` into `## X.Y.Z — <date>` and commits `Release X.Y.Z`.
-2. It makes the package from that commit.
-3. It tags the commit with the annotated tag `vX.Y.Z`.
-4. It prints the two pushes to approve, `git push origin main` and `git push origin vX.Y.Z`, and stops. It
-   never pushes. Push them one at a time, never with `--tags`.
-5. Run again once both are on GitHub, it packages again from the tagged commit and makes the GitHub release
-   **as a draft**, titled `<App> X.Y.Z`, with that version's CHANGELOG section as its notes and the zip, the
-   MSI of a program and `SHA256SUMS.txt` as its files. It needs `gh`, signed in.
+1. Commits nothing: it finds the version ready.
+2. Makes the package from `main`'s commit.
+3. Tags that commit with the annotated tag `vX.Y.Z`.
+4. Prints the pushes to approve and stops; it never pushes. `main` is already on GitHub, so only the tag
+   goes: `git push origin vX.Y.Z`, never `--tags`.
+5. Run again once the tag is on GitHub, it packages again from the tagged commit and makes the GitHub
+   release **as a draft**, titled `<App> X.Y.Z`, with that version's CHANGELOG section as its notes and the
+   zip, the MSI of a program and `SHA256SUMS.txt` as its files. It needs `gh`, signed in.
 6. **The Open3D maintainer publishes the draft.** Nobody else does.
 
-*Why:* the launcher installs a published version on every computer at once, so nothing reaches it without
-the maintainer's approval.
-
-TODO(check): with every change reaching `main` through a pull request, how the release commit and its tag
-reach a `main` that may be protected; the release step today pushes `main` itself and checks that origin's
-`main` has the commit.
+*Why:* every change is reviewed before it reaches `main`, the release too; and the launcher installs a
+published version on every computer at once, so nothing reaches it without the maintainer's approval.
 
 Before every release:
 
