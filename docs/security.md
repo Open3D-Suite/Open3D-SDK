@@ -120,8 +120,9 @@ something the person did not ask for.
 
 ## The review before the launcher
 
-Before an app enters the launcher's signed catalog, Open3D's maintainers review it. The author prepares it
-by going through this list:
+An app enters the launcher's signed catalog through a pull request to Open3D-Launcher, and another member
+of Open3D-Suite reviews it there ([Distribution](distribution.md#entering-the-launcher)). The author
+prepares the review by going through this list:
 
 - [ ] `tools\check.ps1` and `tools\check.ps1 -Full` pass, and CI is green on `main`.
 - [ ] Every rule above that applies to the app holds, and each has its test where a test can show it.
@@ -132,9 +133,10 @@ by going through this list:
 - [ ] The package checked: no private data, the version inside it the release's.
 - [ ] The README says what the app sends over a network, if anything, and what it does not protect against.
 
-The maintainers then read the code, try to break it as an attacker would (a tampered file, a request without
-a signature, a web page calling its local server, an altered download), and do the real test as a user
-([Testing](testing.md)). Each problem they find is fixed with a test that fails without the fix, and tried
-again for real. Only then is the app added to the catalog ([Distribution](distribution.md)).
+The reviewer then reads the code, tries to break it as an attacker would (a tampered file, a request
+without a signature, a web page calling its local server, an altered download), and does the real test as a
+user ([Testing](testing.md)). Each problem found is fixed with a test that fails without the fix, and tried
+again for real. Only then does the reviewer approve the pull request, and its catalog can be signed.
 
-*Why:* the Open3D maintainer signs the catalog, and the people who install the apps trust that signature.
+*Why:* GitHub signs the catalog only once someone other than the pull request's author has approved it,
+and the people who install the apps trust that signature.

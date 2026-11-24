@@ -124,27 +124,47 @@ removes an app on request, keeping its settings ([Settings and folders](settings
 
 ## Entering the launcher
 
-The launcher lists the apps in a catalog that the Open3D maintainer signs; installed launchers read it at
-every start and accept it only with a valid signature. A new app enters it in these steps:
+The launcher lists the apps in a signed catalog, kept in
+[Open3D-Launcher](https://github.com/Open3D-Suite/Open3D-Launcher); installed launchers read it at every
+start and accept it only with a valid signature. Any member of Open3D-Suite can bring an app into it,
+through a pull request to that repository, in these steps:
 
 1. **Checks and CI green.** `tools\check.ps1` and `-Full` pass, and CI is green on `main`.
-2. **A review by Open3D's maintainers**: the code, the security
-   ([Security](security.md#the-review-before-the-launcher)) and the real test as a user
-   ([Testing](testing.md)), on the package of the version to be released. Each problem found is fixed, with
-   its test, before the next step.
-3. **A first release**, as a draft, with its package as above. Its author publishes it.
-4. **The catalog.** The maintainers add the app to the signed catalog. For that, give them:
-   - the name, the id (the name in lower case) and the repository;
-   - whether it is a program or a 3ds Max plug-in, and for a program where its exe is if not at the zip's
-     root;
+2. **A first release**, with its package as above, published by its author.
+3. **The pull request.** On a branch of Open3D-Launcher itself, not of a fork (every member can push
+   branches there), add:
+   - the app's entry in `crates/core/catalog.toml`, made like the entries of the existing apps of its kind;
+   - its icon, `assets/app-icons/<id>.png`, and its line in `catalog::app_icon_png`
+     (`crates/core/src/catalog.rs`);
+   - the Spanish of the entry's texts, as its rows in `crates/ui-egui/src/i18n/es.tsv`;
+   - the app in the README's list of apps, and an entry in the `CHANGELOG.md`.
+
+   The entry holds:
+   - the name, the id (the name in lower case) and the repository, `Open3D-Suite/Open<Name>`;
+   - whether it is a program (`package = "standalone"`) or a 3ds Max plug-in, and for a program where its
+     exe is if not at the zip's root;
    - a tagline, a headline, an about text of a paragraph or two and a few features (a title and a line
-     each; the existing apps have four), in English and in Spanish;
+     each; the existing apps have four);
    - the platforms line: Windows, and for a plug-in the 3ds Max versions tested and those that should work
      ([Principles](principles.md#the-3ds-max-versions-to-state));
-   - the icon as a PNG of 256 by 256 pixels, and its main colour.
+   - its colours, and in `icon_sha256` the SHA-256 of its icon, which its `icon_url` names too, as in the
+     other entries. The icon is a PNG of 256 by 256 pixels.
 
-Once the maintainer has signed and pushed the catalog, every launcher shows the app at its next start.
-Each later release of the app reaches them once its draft is published.
+   Its CI stays red until the catalog is signed: a test checks the signed copy against the catalog.
+4. **A review by another member**: the code, the security
+   ([Security](security.md#the-review-before-the-launcher)) and the real test as a user
+   ([Testing](testing.md)), on the released package. Each problem found is fixed, with its test, in a new
+   release. Then the reviewer approves the pull request.
+5. **The signature.** Any member runs *Actions → sign-catalog → Run workflow* in Open3D-Launcher, from
+   `main`, with the pull request's number. GitHub checks that someone other than its author, who can write
+   in the repository, approved its last commit. It signs the catalog with the key it keeps as a secret that
+   only `main` may use, adds the signed files to the pull request in a new commit, and starts its CI.
+6. **The merge.** The new commit dismisses the approval: the reviewer approves again, and the pull request
+   is merged.
 
-*Why:* the people who install the apps trust the maintainer's signature on the catalog, so an app is
-added only after it has been checked as the others were.
+Once it is merged, every launcher shows the app at its next start. Each later release of the app reaches
+them once its author publishes the draft: a new version needs no new signature.
+
+*Why:* any member can add an app without depending on one person, and no single account, a stolen one
+included, can put a program on every user's computer: it takes a pull request, another member's approval
+and GitHub's signature. Nobody needs to hold the key: GitHub signs with it.

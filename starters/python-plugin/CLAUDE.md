@@ -12,9 +12,9 @@ Update it in the same commit as a change that makes it old.
   code, comments, commits, documents, CHANGELOG, releases.
 - **The author decides.** A working or design criterion is never decided alone: ask, one question at a
   time, with 2 to 4 options, your recommendation and why. What every Open3D app shares (the common files,
-  the shared settings, the checks) is decided by Open3D's maintainers, and they approve what enters the
-  Open3D launcher: once the checks and the CI pass, after a review of the code, of its security and a
-  real test as a user.
+  the shared settings, the checks) is decided by Open3D's maintainers. An app enters the Open3D launcher
+  through a pull request to Open3D-Launcher that another member of Open3D-Suite approves: once the checks
+  and the CI pass, after a review of the code, of its security and a real test as a user.
 - **The code is the truth.** Check a claim in the code before relying on it.
 - **Plan first.** Before a large change, show a plan and wait for the author's OK.
 - **Commits.** Small, one step each, with one English sentence in the imperative. A format commit carries

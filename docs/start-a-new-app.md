@@ -156,13 +156,16 @@ From here on, each change is a branch, small commits and a pull request
 When the app does what its first version should:
 
 1. `tools\check.ps1` and `tools\check.ps1 -Full` pass, and CI is green on `main`.
-2. Tell the Open3D maintainer. Open3D's maintainers review the code, its security
-   ([Security](security.md#the-review-before-the-launcher)) and do the real test as a user
-   ([Testing](testing.md)). What they find is fixed first.
-3. Make the first release, 0.1.0: a pull request that prepares it, then `python -I tools/repo.py release
+2. Make the first release, 0.1.0: a pull request that prepares it, then `python -I tools/repo.py release
    0.1.0` on `main` ([Distribution](distribution.md#the-release)). It stays a draft until you publish it,
-   once the real test as a user passed.
-4. Give the maintainers the texts and the icon for the launcher. They add the app to the signed catalog,
-   and every launcher shows it at its next start.
+   once the real test as a user passed ([Testing](testing.md)).
+3. Open a pull request to [Open3D-Launcher](https://github.com/Open3D-Suite/Open3D-Launcher), from a branch
+   of that repository, that adds the app: its entry in the catalog, its icon, its texts in Spanish, and its
+   line in the README and the CHANGELOG.
+4. Another member reviews the code, its security ([Security](security.md#the-review-before-the-launcher))
+   and does the real test as a user. What they find is fixed first; then they approve the pull request.
+5. Any member has GitHub sign its catalog: *Actions → sign-catalog → Run workflow*, with the pull
+   request's number. The reviewer approves it again, it is merged, and every launcher shows the app at its
+   next start.
 
 Each step is in [Distribution](distribution.md#entering-the-launcher).
