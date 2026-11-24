@@ -118,6 +118,12 @@ something the person did not ask for.
   ([Distribution](distribution.md)). The packager checks it.
   *Why:* an installer runs with administrator rights.
 
+## Your GitHub account
+
+- [ ] **Two-factor authentication is on.** Open3D-Suite requires it of every member.
+  *Why:* GitHub signs the launcher's catalog once a member approves a pull request, so the safety of every
+  launcher rests on the members' accounts.
+
 ## The review before the launcher
 
 An app enters the launcher's signed catalog through a pull request to Open3D-Launcher, and another member

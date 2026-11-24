@@ -33,6 +33,9 @@ As its admin, you merge the app's pull requests, make its version tags and publi
 from the other members still reach `main` through a pull request with green CI; every member can push
 branches to it and open pull requests.
 
+Your GitHub account needs two-factor authentication: Open3D-Suite requires it of every member
+([Security](security.md#your-github-account)).
+
 What you need on the computer:
 
 - Windows 10 or 11, 64-bit, Git, and Python 3.11 or newer for the common tool.
