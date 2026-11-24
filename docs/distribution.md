@@ -94,7 +94,8 @@ version and its CHANGELOG section, the release step:
    release **as a draft**, titled `<App> X.Y.Z`, with that version's CHANGELOG section as its notes and the
    zip, the MSI of a program and `SHA256SUMS.txt` as its files. It needs `gh`, signed in.
 6. **The app's author publishes the draft**, once `tools\check.ps1 -Full` and the real test as a user passed
-   on its commit. Nobody else has to.
+   on its commit. Nobody else has to. Once published, the release cannot change: Open3D-Suite makes every
+   release immutable, so its files and its tag stay as they are. A mistake in it is fixed by a new version.
 
 *Why:* the release reaches `main` like every change, with CI green. A new version needs no signature,
 and each author answers for their app; the launcher installs a published version on every computer at
@@ -157,14 +158,17 @@ through a pull request to that repository, in these steps:
    release. Then the reviewer approves the pull request.
 5. **The signature.** Any member runs *Actions → sign-catalog → Run workflow* in Open3D-Launcher, from
    `main`, with the pull request's number. GitHub checks that someone other than its author, who can write
-   in the repository, approved its last commit. It signs the catalog with the key it keeps as a secret that
-   only `main` may use, adds the signed files to the pull request in a new commit, and starts its CI.
+   in the repository, approved its last commit. The run then waits until a member other than whoever
+   started it approves it (*Review deployments*): check that the approved commit is the one you reviewed.
+   It signs the catalog with the key it keeps as a secret that only `main` may use, adds the signed files to
+   the pull request in a new commit, and starts its CI.
 6. **The merge.** The new commit dismisses the approval: the reviewer approves again, and the pull request
-   is merged.
+   is merged. In Open3D-Launcher every member writes, and the last push to a pull request must be approved
+   by someone other than whoever pushed it.
 
 Once it is merged, every launcher shows the app at its next start. Each later release of the app reaches
 them once its author publishes the draft: a new version needs no new signature.
 
 *Why:* any member can add an app without depending on one person, and no single account, a stolen one
 included, can put a program on every user's computer: it takes a pull request, another member's approval
-and GitHub's signature. Nobody needs to hold the key: GitHub signs with it.
+of it and of the signing, and GitHub's signature. Nobody needs to hold the key: GitHub signs with it.

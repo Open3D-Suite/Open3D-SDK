@@ -23,15 +23,17 @@ Agree also the kind of app, a program or a 3ds Max plug-in, and its technology
 
 1. The Open3D apps live in the GitHub organization [Open3D-Suite](https://github.com/Open3D-Suite), whose
    members can create repositories. Once the name is agreed, make the app's repository there yourself from
-   this template (*Use this template*, owner Open3D-Suite, public, only `main`). You are its admin.
+   this template (*Use this template*, owner Open3D-Suite, public, only `main`). You are its admin. The
+   organization gives it its security settings, and makes its releases immutable.
 2. Give it the rules of the other repositories, in its settings under *Rules*: `main` takes a pull request
-   with one approval and green CI, and is never force-pushed or deleted; version tags (`v*`) are made only by
-   the organization's owners and the repository's admins, who are in the bypass list of both rules.
+   with one approval and green CI, whose last push is approved by someone other than whoever pushed it,
+   and is never force-pushed or deleted; tags, every one and not only `v*`, are made only by the
+   organization's owners and the repository's admins, who are in the bypass list of both rules.
 3. Clone it.
 
-As its admin, you merge the app's pull requests, make its version tags and publish its releases. Changes
-from the other members still reach `main` through a pull request with green CI; every member can push
-branches to it and open pull requests.
+As its admin, you merge the app's pull requests, make its version tags and publish its releases. The
+other members can read it but not write in it: a change of theirs comes from their fork, through a pull
+request with green CI, and waits for your review. You may give a co-author write access.
 
 Your GitHub account needs two-factor authentication: Open3D-Suite requires it of every member
 ([Security](security.md#your-github-account)).
@@ -169,7 +171,7 @@ When the app does what its first version should:
 4. Another member reviews the code, its security ([Security](security.md#the-review-before-the-launcher))
    and does the real test as a user. What they find is fixed first; then they approve the pull request.
 5. Any member has GitHub sign its catalog: *Actions → sign-catalog → Run workflow*, with the pull
-   request's number. The reviewer approves it again, it is merged, and every launcher shows the app at its
-   next start.
+   request's number, and a member other than whoever started it approves the run. The reviewer approves
+   the pull request again, it is merged, and every launcher shows the app at its next start.
 
 Each step is in [Distribution](distribution.md#entering-the-launcher).
