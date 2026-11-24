@@ -52,8 +52,8 @@ what they cover (a new setting, a network feature, a release).
   says.
 - **Plan first.** Before a large change, Claude shows a plan and waits for the author's confirmation.
 - **Nothing goes out without the author's explicit OK, each time:** no push, no tag, no release. A release
-  is left on GitHub as a draft; the Open3D maintainer publishes it. Tags are annotated, `vX.Y.Z`, and pushed
-  one at a time, never with `--tags`.
+  is left on GitHub as a draft; the author publishes it once `tools\check.ps1 -Full` and the real test as a
+  user passed. Tags are annotated, `vX.Y.Z`, and pushed one at a time, never with `--tags`.
 - **Nothing is deleted without asking first, each time.** That holds for files, branches, folders and data.
 - **A test for every fixed bug**, which fails without the fix; new logic comes with its tests.
 - **After a change**, the app builds, `tools\check.ps1` passes and the app starts.

@@ -93,10 +93,12 @@ version and its CHANGELOG section, the release step:
 5. Run again once the tag is on GitHub, it packages again from the tagged commit and makes the GitHub
    release **as a draft**, titled `<App> X.Y.Z`, with that version's CHANGELOG section as its notes and the
    zip, the MSI of a program and `SHA256SUMS.txt` as its files. It needs `gh`, signed in.
-6. **The Open3D maintainer publishes the draft.** Nobody else does.
+6. **The app's author publishes the draft**, once `tools\check.ps1 -Full` and the real test as a user passed
+   on its commit. Nobody else has to.
 
-*Why:* every change is reviewed before it reaches `main`, the release too; and the launcher installs a
-published version on every computer at once, so nothing reaches it without the maintainer's approval.
+*Why:* every change is reviewed before it reaches `main`, the release too. A new version needs no
+signature, and each author answers for their app; the launcher installs a published version on every
+computer at once, so it is published only once it has been used as a person would.
 
 Before every release:
 
@@ -130,7 +132,7 @@ every start and accept it only with a valid signature. A new app enters it in th
    ([Security](security.md#the-review-before-the-launcher)) and the real test as a user
    ([Testing](testing.md)), on the package of the version to be released. Each problem found is fixed, with
    its test, before the next step.
-3. **A first release**, as a draft, with its package as above. The Open3D maintainer publishes it.
+3. **A first release**, as a draft, with its package as above. Its author publishes it.
 4. **The catalog.** The maintainers add the app to the signed catalog. For that, give them:
    - the name, the id (the name in lower case) and the repository;
    - whether it is a program or a 3ds Max plug-in, and for a program where its exe is if not at the zip's

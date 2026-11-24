@@ -23,8 +23,8 @@ Update it in the same commit as a change that makes it old.
 - **Pull requests.** Changes reach `main` through pull requests: work on a branch, the CI passes, someone
   reviews it, then it is merged.
 - **Nothing goes out without the author's explicit OK:** no push, no tag, no release. A release stays a
-  draft on GitHub, and Open3D's maintainer publishes it. Tags are annotated, `vX.Y.Z`, and pushed one at
-  a time, never with `--tags`.
+  draft on GitHub until the author publishes it, once `tools\check.ps1 -Full` and the real test as a user
+  passed. Tags are annotated, `vX.Y.Z`, and pushed one at a time, never with `--tags`.
 - **Version numbers.** While the app is at 0.x, the middle number goes up when something stops being
   compatible or a feature is added, the last one when only faults are fixed.
 - **Nothing is deleted without asking the author first,** each time.
