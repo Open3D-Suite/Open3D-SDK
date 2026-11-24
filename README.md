@@ -26,8 +26,8 @@ A repository made from it passes `tools\check.ps1` from its first commit.
 
 ## Start a new app
 
-1. Agree the app's name with the Open3D maintainer: Open + a name, such as OpenRef.
-2. Make its repository with *Use this template* and clone it.
+1. Agree the app's name with the other members of Open3D-Suite: Open + a name, such as OpenRef.
+2. Make its repository in Open3D-Suite with *Use this template*, as its admin, and clone it.
 3. Copy the starter of your kind of app to the root, then remove `starters/`, `docs/` and this README.
 4. Replace the placeholder name `OpenExample` (`openexample`) and the values each app makes its own, such
    as the upgrade code of a program's installer.

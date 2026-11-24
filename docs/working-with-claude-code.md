@@ -1,8 +1,8 @@
 # Working with Claude Code
 
 The Open3D apps are written with Claude Code. Each starter carries a model `CLAUDE.md`, and the rules below
-are the ones every Open3D repository works by. "The author" is the person who owns the app and works with
-Claude on it.
+are the ones every Open3D repository works by. "The author" is the person who owns the app, is the admin of
+its repository and works with Claude on it.
 
 ## The model `CLAUDE.md`
 

@@ -5,8 +5,9 @@ enters the launcher. The commands are for PowerShell, from the root of the new r
 
 ## 1. Agree the name
 
-An Open3D app is called **Open + a name**, written as one word: OpenRef, OpenFarm, OpenTools. The Open3D
-maintainer approves the name before anything is made with it. Below, `Open<Name>` stands for it.
+An Open3D app is called **Open + a name**, written as one word: OpenRef, OpenFarm, OpenTools. Agree the name
+with the other members of Open3D-Suite, the GitHub organization of the apps, before anything is made with
+it. Below, `Open<Name>` stands for it.
 
 - The **name** is what the launcher shows, the app's folders (`Open3D\Open<Name>`), its exe
   (`Open<Name>.exe`) or its bundle (`Open<Name>.bundle`), and its repository.
@@ -20,11 +21,17 @@ Agree also the kind of app, a program or a 3ds Max plug-in, and its technology
 
 ## 2. Make the repository
 
-1. The Open3D apps live in the GitHub organization [Open3D-Suite](https://github.com/Open3D-Suite), where only
-   its owners create repositories. Once the name is agreed, an owner makes the app's repository there from
-   this template (*Use this template*, public, only `main`), with the same rules as the others: `main`
-   takes a reviewed pull request with green CI, and only owners make version tags.
-2. Clone it. As a member of the organization you can push branches to it and open pull requests.
+1. The Open3D apps live in the GitHub organization [Open3D-Suite](https://github.com/Open3D-Suite), whose
+   members can create repositories. Once the name is agreed, make the app's repository there yourself from
+   this template (*Use this template*, owner Open3D-Suite, public, only `main`). You are its admin.
+2. Give it the rules of the other repositories, in its settings under *Rules*: `main` takes a pull request
+   with one approval and green CI, and is never force-pushed or deleted; version tags (`v*`) are made only by
+   the organization's owners and the repository's admins, who are in the bypass list of both rules.
+3. Clone it.
+
+As its admin, you merge the app's pull requests, make its version tags and publish its releases. Changes
+from the other members still reach `main` through a pull request with green CI; every member can push
+branches to it and open pull requests.
 
 What you need on the computer:
 

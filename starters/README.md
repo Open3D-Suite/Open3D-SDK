@@ -27,10 +27,10 @@ and take only their folders from the shared settings.
 
 In every starter:
 
-- **The name.** Every `OpenExample` becomes the app's name (Open + a name, approved by Open3D's
-  maintainers), every `openexample` its lower-case id, and in the C++ plug-in every `OPENEXAMPLE` its
-  upper-case id: in the files and in the names of files and folders. `git grep -n -i openexample` lists
-  them all.
+- **The name.** Every `OpenExample` becomes the app's name (Open + a name, agreed with the other
+  members of Open3D-Suite), every `openexample` its lower-case id, and in the C++ plug-in every
+  `OPENEXAMPLE` its upper-case id: in the files and in the names of files and folders.
+  `git grep -n -i openexample` lists them all.
 - **The texts in angle brackets**, such as `<What OpenExample does for a 3D artist, ...>`, and
   `<Author>` in the copyright lines.
 - **The codes.** Each `REPLACE-WITH-A-NEW-GUID` becomes a GUID made for the app (two places never share
