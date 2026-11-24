@@ -139,10 +139,13 @@ Every change reaches `main` through a pull request:
 
 1. Work on a short-lived branch.
 2. Push it and open a pull request to `main`. CI runs `tools\check.ps1` on it.
-3. Someone other than its author reviews it.
-4. Once CI passes and the review is done, merge it into `main`.
+3. In your own app, you are its admin: once CI passes, you merge your own pull request, and asking another
+   member for a review is up to you. A change someone else proposes to your app waits for your review.
+4. In a repository that is not yours (the launcher, another member's app, Open3D-SDK), another person
+   reviews and approves it before it is merged.
 
-*Why:* two people work on a new app, and a second pair of eyes before `main` catches what one misses.
+*Why:* each author runs their app without depending on anyone, CI guards `main` in every repository, and
+what reaches other people's code, or every user through the launcher, is seen by a second person.
 
 ## The CHANGELOG
 

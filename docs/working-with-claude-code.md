@@ -59,8 +59,8 @@ what they cover (a new setting, a network feature, a release).
 - **After a change**, the app builds, `tools\check.ps1` passes and the app starts.
 - **Small commits**, one step each, with one English sentence in the imperative. The CHANGELOG entry goes in
   the same commit as a change a user can notice.
-- **Pull requests.** Every change reaches `main` through one: a branch, CI passes, someone else reviews it,
-  then it is merged.
+- **Pull requests.** Every change reaches `main` through one: a branch, CI passes, then it is merged. In
+  the author's own app the author merges it; elsewhere, another person reviews it first.
 - **One subagent per area** for a task that touches several (the engine and the plug-in, or two parts of a
   program that do not share code): each works in its own part, and the main session checks what each one
   did.

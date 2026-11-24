@@ -73,7 +73,7 @@ python -I tools/repo.py version set X.Y.Z
 ```
 
 Then, in `CHANGELOG.md`, turn `## In development` into `## X.Y.Z — <date>`, dated the way the last heading
-is. Commit `Release X.Y.Z`, open the pull request, and merge it once CI passes and it is reviewed.
+is. Commit `Release X.Y.Z`, open the pull request, and merge it once CI passes.
 
 **2. Tag it and make the draft, on `main`.** Switch to `main`, pull, and run:
 
@@ -96,9 +96,9 @@ version and its CHANGELOG section, the release step:
 6. **The app's author publishes the draft**, once `tools\check.ps1 -Full` and the real test as a user passed
    on its commit. Nobody else has to.
 
-*Why:* every change is reviewed before it reaches `main`, the release too. A new version needs no
-signature, and each author answers for their app; the launcher installs a published version on every
-computer at once, so it is published only once it has been used as a person would.
+*Why:* the release reaches `main` like every change, with CI green. A new version needs no signature,
+and each author answers for their app; the launcher installs a published version on every computer at
+once, so it is published only once it has been used as a person would.
 
 Before every release:
 

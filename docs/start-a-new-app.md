@@ -143,7 +143,8 @@ git push -u origin start
 ```
 
 Then open a pull request from `start` to `main`, on GitHub or with `gh pr create`. CI runs
-`tools\check.ps1` on it. Once it passes, someone other than you reviews it, and it is merged into `main`.
+`tools\check.ps1` on it. Once it passes, you merge it into `main`: it is your app
+([Development](development.md#pull-requests)).
 
 On GitHub, in the repository's settings, also switch on **Dependabot alerts**, and leave its automatic fix
 requests off ([Security](security.md#dependencies)).
