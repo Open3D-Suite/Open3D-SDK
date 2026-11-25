@@ -76,5 +76,5 @@ as a change that makes it old.
   and `cpp-plugin/build.local.ps1` hold the build folders of one computer and stay out of Git.
 - `check_starter.py` copies `.cargo/config.local.toml`, so that the Rust build reuses its folder, but
   not `build.local.ps1`: CMake refuses a build folder made from another source folder.
-- The copies of the common C++ files are not formatted with `.clang-format`: the C++ starter's
-  `.clang-format-ignore` leaves them out.
+- The C++ starter's `.clang-format-ignore` leaves the copies of the common C++ files out: they keep
+  the format of their original, which follows the same style, and are never changed here.
