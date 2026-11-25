@@ -466,10 +466,12 @@ std::string display(const std::filesystem::path& path)
 {
 #ifdef _WIN32
     const std::wstring wide = path.wstring();
-    const int size = WideCharToMultiByte(CP_UTF8, 0, wide.data(), static_cast<int>(wide.size()), nullptr, 0, nullptr, nullptr);
+    const int size =
+        WideCharToMultiByte(CP_UTF8, 0, wide.data(), static_cast<int>(wide.size()), nullptr, 0, nullptr, nullptr);
     std::string text(static_cast<std::size_t>(size > 0 ? size : 0), '\0');
     if (size > 0)
-        WideCharToMultiByte(CP_UTF8, 0, wide.data(), static_cast<int>(wide.size()), text.data(), size, nullptr, nullptr);
+        WideCharToMultiByte(CP_UTF8, 0, wide.data(), static_cast<int>(wide.size()), text.data(), size, nullptr,
+                            nullptr);
     return text;
 #else
     return path.string();
@@ -512,8 +514,10 @@ bool replace(const std::filesystem::path& path, const std::string& data, std::st
     const std::wstring stamp = std::to_wstring(GetCurrentProcessId()) + L"-" + std::to_wstring(GetTickCount64());
     for (int attempt = 0; attempt < 100; ++attempt)
     {
-        const std::filesystem::path temporary = path.wstring() + L"." + stamp + L"-" + std::to_wstring(attempt) + L".tmp";
-        const HANDLE file = CreateFileW(temporary.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr);
+        const std::filesystem::path temporary =
+            path.wstring() + L"." + stamp + L"-" + std::to_wstring(attempt) + L".tmp";
+        const HANDLE file =
+            CreateFileW(temporary.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr);
         if (file == INVALID_HANDLE_VALUE)
         {
             const DWORD last_error = GetLastError();
@@ -672,8 +676,9 @@ Step copy_one_file(const fs::path& from, const fs::path& to, std::string* why)
 {
 #ifdef _WIN32
     const auto message = [](DWORD code) { return std::system_category().message(static_cast<int>(code)); };
-    const HANDLE source = CreateFileW(from.c_str(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
-                                      nullptr, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, nullptr);
+    const HANDLE source =
+        CreateFileW(from.c_str(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
+                    OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, nullptr);
     if (source == INVALID_HANDLE_VALUE)
     {
         *why = message(GetLastError());
@@ -681,7 +686,8 @@ Step copy_one_file(const fs::path& from, const fs::path& to, std::string* why)
     }
     FILETIME changed{};
     const bool has_time = GetFileTime(source, nullptr, nullptr, &changed) != 0;
-    const HANDLE target = CreateFileW(to.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr);
+    const HANDLE target =
+        CreateFileW(to.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr);
     if (target == INVALID_HANDLE_VALUE)
     {
         *why = couldnt_write(to, message(GetLastError()));
@@ -760,7 +766,8 @@ struct Copying
 // Copies what the folder `from` holds into the empty folder `to`; `inside_old` is the path of `from`
 // inside the old folder. False when the copy must stop (the old folder itself cannot be read, or
 // something cannot be written), with why in `error`.
-bool copy_tree(const fs::path& from, const fs::path& to, const fs::path& inside_old, Copying* copying, std::string* error)
+bool copy_tree(const fs::path& from, const fs::path& to, const fs::path& inside_old, Copying* copying,
+               std::string* error)
 {
     std::error_code failure;
     fs::directory_iterator entry(from, failure);
@@ -893,13 +900,14 @@ std::string with_language(std::optional<std::string_view> old, std::optional<Lan
         if (found != members.end())
             found->raw_value = value;
         else
-            members.push_back(Member{std::string(kKey), value, std::nullopt});
+            members.push_back(Member{ std::string(kKey), value, std::nullopt });
     }
     if (members.empty())
         return "{}\n";
     std::string text = "{\n";
     for (std::size_t i = 0; i < members.size(); ++i)
-        text += "  " + json_string(members[i].key) + ": " + members[i].raw_value + (i + 1 < members.size() ? ",\n" : "\n");
+        text +=
+            "  " + json_string(members[i].key) + ": " + members[i].raw_value + (i + 1 < members.size() ? ",\n" : "\n");
     return text + "}\n";
 }
 
@@ -913,7 +921,8 @@ bool write_language(const std::filesystem::path& dir, std::optional<Language> la
     std::error_code failure;
     std::filesystem::create_directories(dir, failure);
     if (failure || !std::filesystem::is_directory(dir, failure))
-        return fail(error, "couldn't create " + display(dir) + (failure ? " (" + failure.message() + ")" : std::string()));
+        return fail(error,
+                    "couldn't create " + display(dir) + (failure ? " (" + failure.message() + ")" : std::string()));
     return replace(path, with_language(old, language), error);
 }
 
@@ -983,7 +992,8 @@ CarryOver carry_over(const std::filesystem::path& old_dir, const std::filesystem
     std::filesystem::create_directories(parent, failure);
     if (failure || !std::filesystem::is_directory(parent, failure))
     {
-        done.reason = "couldn't create a folder in " + display(parent) + (failure ? " (" + failure.message() + ")" : std::string());
+        done.reason = "couldn't create a folder in " + display(parent) +
+                      (failure ? " (" + failure.message() + ")" : std::string());
         return done;
     }
     std::filesystem::path temporary;

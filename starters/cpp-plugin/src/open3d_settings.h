@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
-// What every OPEN3D app shares: the language, one preference in settings.json (D-050 to D-058), and the
-// folders each app keeps its own files in (D-042 to D-049).
+// What every OPEN3D app shares: the language, one preference in settings.json, and the
+// folders each app keeps its own files in.
 //
 // This file is a copy. Its original is common/settings/open3d_settings.h in the OPEN3D root, which also
 // holds the contract it keeps (common/settings.md): change it there, never here. Plain C++17 with the
@@ -74,7 +74,7 @@ bool write_language(const std::filesystem::path& dir, std::optional<Language> la
 // language, or no "language" key for nothing. An `old` that is not a JSON object is not kept.
 std::string with_language(std::optional<std::string_view> old, std::optional<Language> language);
 
-// The language of Windows (D-052): Spanish when the user's interface language is Spanish, of any
+// The language of Windows: Spanish when the user's interface language is Spanish, of any
 // country; otherwise English.
 Language windows_language();
 // windows_language for a Windows language identifier (a LANGID): Spanish when its primary language is
@@ -88,10 +88,10 @@ std::optional<std::filesystem::path> data_dir();
 std::optional<std::filesystem::path> data_dir_from(const std::optional<std::filesystem::path>& variable,
                                                    const std::optional<std::filesystem::path>& localappdata);
 
-// The folder of an app's own settings (D-042): `app` in settings_dir, such as
+// The folder of an app's own settings: `app` in settings_dir, such as
 // %APPDATA%\Open3D\OpenGaussian. Nothing when there is no settings_dir.
 std::optional<std::filesystem::path> app_settings_dir(const std::filesystem::path& app);
-// The folder of everything else an app writes (D-044): `app` in data_dir, such as
+// The folder of everything else an app writes: `app` in data_dir, such as
 // %LOCALAPPDATA%\Open3D\OpenGaussian. Nothing when there is no data_dir.
 std::optional<std::filesystem::path> app_data_dir(const std::filesystem::path& app);
 
@@ -116,8 +116,8 @@ struct CarryOver
     std::string reason;
 };
 
-// Copies an app's old folder into its new one, the first time it starts with the new folders (D-048,
-// D-049). Only when nothing has the name `new_dir` and `old_dir` is a folder: everything in `old_dir` is
+// Copies an app's old folder into its new one, the first time it starts with the new folders.
+// Only when nothing has the name `new_dir` and `old_dir` is a folder: everything in `old_dir` is
 // copied into a new folder beside `new_dir`, which takes the name `new_dir` once the copy is complete, so
 // a copy cut half way is never taken for a finished one. An existing `new_dir` is never touched, and
 // `old_dir` is never changed, moved or deleted. Links inside `old_dir` are not followed. A file that
