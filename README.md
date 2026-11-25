@@ -3,11 +3,11 @@
 The guidelines and the starting point for a new Open3D app.
 
 Open3D is a suite of free, open-source tools for 3D artists who use 3ds Max: a launcher that installs and
-updates the apps, programs of their own (OpenView, OpenRef, OpenFarm, OpenGaussian) and 3ds Max plug-ins
+updates the apps, programs of their own (OpenView, OpenRef, OpenFarm, OpenLibrary) and 3ds Max plug-ins
 (OpenTools, OpenManager, OpenScatter). Each app lives in a public repository of its own and works on its
 own. They share one way of being built, checked, packaged, installed and set up, so that the suite feels
 like one thing to the people who use it. The launcher and the list of apps are in
-[Open3D](https://github.com/Open3D-Suite/Open3D-Launcher).
+[Open3D-Launcher](https://github.com/Open3D-Suite/Open3D-Launcher).
 
 This repository is a GitHub template. *Use this template* makes a new app's repository from it, with:
 

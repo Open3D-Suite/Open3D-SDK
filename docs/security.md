@@ -145,4 +145,5 @@ user ([Testing](testing.md)). Each problem found is fixed with a test that fails
 again for real. Only then does the reviewer approve the pull request, and its catalog can be signed.
 
 *Why:* GitHub signs the catalog only once someone other than the pull request's author has approved it,
-and the people who install the apps trust that signature.
+and another member than whoever started the signing has approved that too; the people who install the
+apps trust that signature.
